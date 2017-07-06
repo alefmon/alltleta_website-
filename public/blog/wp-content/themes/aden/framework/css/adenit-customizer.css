@@ -1,0 +1,39 @@
+/* Customizer UI CSS */
+
+.customize-control select,
+.customize-control input[type=text]:not(.wp-color-picker),
+.customize-control input[type=number],
+.customize-control-image .remove-button,
+.customize-control-image .upload-button,
+.customize-control-site_icon .remove-button,
+.customize-control-site_icon .upload-button {
+	width: 100% !important;
+}
+
+.customize-control-image .remove-button {
+	margin-bottom: 7px !important;
+}
+
+.customize-control-site_icon .remove-button,
+.customize-control-site_icon .upload-button,
+.customize-control-site_icon .remove-button {
+	width: 100% !important;
+}
+
+#customize-control-adenit_custom-css textarea {
+	height: 250px !important;
+}
+
+.customize-control-image .actions {
+	margin-bottom: 0 !important;
+}
+
+li[id*="customize-control-adenit_social"] i {
+	height: 25px;
+	width: 25px;
+	text-align: center;
+	line-height: 25px;
+	background: #eee;
+	color: #555;
+	margin-right: 7px;
+}

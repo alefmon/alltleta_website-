@@ -1,0 +1,144 @@
+<% include partials/header %>
+
+<section id="aula">
+
+    <div class="container">
+        <h2 class="section-heading"> Não encontrou seu treino?</h2> <h3> Agende horário em uma aula ainda não confirmada !</h3>
+        <br>
+        <br>
+        <h4>Escolha o local do seu treino</h4>
+        <div class="column" >
+          <div class="row">
+            <% locals.forEach(function(local){ %>
+            <div class="col-xs-6 col-md-3">
+              <div class="thumbnail">
+                <a data-toggle="modal" data-target="#<%=local.id_name%>">
+                  <img  src="<%=local.image2%>" alt="<%=local.name%>" >
+                  <div class="caption">
+                    <h3><%=local.name%></h3>
+                  </div>
+                </a>
+                <div class="buttons-card">
+                  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#<%=local.id_name%>">
+                    Ver Treinos
+                  </button>
+                  <button onclick="window.open('<%=local.location.mapLink%>')" class="btn btn-default btn-sm" role="button">
+                    Ver mapa
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="<%=local.id_name%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <form action="/suggestion" method="post" id="suggestionForm" class="ui massive container segment">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h3 class="modal-title" id="myModalLabel"> <strong>Agende seu treino</strong> </h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ui stackable two column grid">
+
+                            <div class="column">
+                                <div class="ui link cards">
+                                  <div class="card">
+                                    <div class="image">
+                                      <img src="<%=local.image2%>">
+                                    </div>
+                                    <div class="content">
+                                      <div class="header"style="font-size:20px;"><%=local.name%></div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <input type="radio" name="local" value="<%=local.name%>" checked style="display:none">
+                            <div class="column">
+                                <h4> <strong>Data e Horário</strong></h4>
+                                <div class="">
+                                  <label for="data">Data: </label>
+                                  <input type="date" id="dateField" name="date" required>
+                                </div>
+                                <div class="ui two column grid">
+                                      <div class="ui column timeInput">
+                                          <label>
+                                              <input type="radio" name="time" id="7" value="7h" checked>
+                                              <img class="localRadio" src="img/location.png" alt="icon">
+                                              7:00h
+                                          </label>
+                                      </div>
+                                      <div class="ui column timeInput">
+                                          <label>
+                                              <input type="radio" name="time" id="8" value="8h">
+                                              <img class="localRadio" src="img/location.png" alt="icon">
+                                              8:00h
+                                          </label>
+                                      </div>
+                                      <div class="ui column timeInput">
+                                          <label>
+                                              <input type="radio" name="time" id="9" value="9h">
+                                              <img class="localRadio" src="img/location.png" alt="icon">
+                                              9:00h
+                                          </label>
+                                      </div>
+                                      <div class="ui column timeInput">
+                                          <label>
+                                              <input type="radio" name="time" id="18" value="18h">
+                                              <img class="localRadio" src="img/location.png" alt="icon">
+                                              18:00h
+                                          </label>
+                                      </div>
+                                      <div class="ui column timeInput">
+                                          <label>
+                                              <input type="radio" name="time" id="19" value="19h">
+                                              <img class="localRadio" src="img/location.png" alt="icon">
+                                              19:00h
+                                          </label>
+                                      </div>
+                                      <div class="ui column timeInput">
+                                          <label>
+                                              <input type="radio" name="time" id="20" value="20h">
+                                              <img class="localRadio" src="img/location.png" alt="icon">
+                                              20:00h
+                                          </label>
+                                      </div>
+                                </div>
+                            </div>
+                          </div>
+                          <br>
+                          <h4> Informações Pessoais</h4>
+                          <div class="ui equal width large form">
+                            <div class="fields">
+                              <div class="required field">
+                                <label for="exampleInputEmail2">Nome </label>
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail2" placeholder="Seu Nome" required>
+                              </div>
+                            </div>
+                            <div class="fields">
+                              <div class="required field">
+                                <label for="exampleInputEmail2">Telefone de contato</label>
+                                <input type="text" name="phone" class="form-control" id="exampleInputEmail2" placeholder="(99) 99999999 " required>
+                              </div>
+                              <div class="field">
+                                <label for="exampleInputEmail2">Email</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="email@example.com">
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-success" name="aulaSubmit" value="Submit" id="bookClassButton">Agendar aula</button>
+                    </div>
+                  </form>
+                  <script src="js/app.js"></script>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+    </div>
+</section>
+<% include partials/footer %>

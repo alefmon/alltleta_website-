@@ -1,0 +1,30 @@
+.adenit-metabox-textarea,
+.adenit-metabox-input {
+	display: block;
+	width: 80% !important;
+	margin:15px 0px;
+}
+
+.adenit-metabox-textarea {
+	height: 100px;
+}
+
+.adenit-metabox-label {
+	display: block;
+	width: 20%;
+	float: left; 
+	padding: 5px 0px;
+	font-weight: bold;
+	color: #919191;
+}
+
+#adenit-post-metabox {
+	display: block !important;
+}
+
+#adenit-post-metabox label,
+#adenit-page-metabox label {
+	padding: 5px 0px;
+	font-weight: bold;
+	color: #919191;
+}

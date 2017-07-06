@@ -1,0 +1,42 @@
+<% include partials/header %>
+    <section class="cta">
+        <div class="cta-content">
+            <div class="container">
+                <h2>Treinamento Funcional por um preço acessível perto de você!</h2>
+                <a href="#email_section" class="btn btn-outline btn-xl page-scroll"> Baixar Alltleta</a>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </section>
+    <section id="download" class="download bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2" id="download_section">
+                    <h2 class="section-heading"> Em Breve disponível em iOS e Android</h2>
+                    <p>O download do nosso App estará disponível em breve !</p>
+                    <div class="badges">
+                        <a class="badge-link" href="#email_section"><img src="img/google-play-badge.svg" alt="google play icon"></a>
+                        <a class="badge-link" href="#email_section"><img src="img/app-store-badge.svg" alt="app store icon"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="email_section">
+        <div class="container">
+            <h2 class="section-heading"> Receba um email quando o App estiver pronto !</h2>
+
+            <form class="form-inline" action="/download" method="post" id="emailContact">
+              <div class="form-group">
+                <label for="exampleInputEmail2">Email</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="Insira seu email">
+              </div>
+              <button type="submit" class="btn btn-success btn-sm" name="emailSubmit" value="Submit">Enviar</button>
+            </form>
+
+        </div>
+
+    </section>
+
+<% include partials/footer %>

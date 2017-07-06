@@ -1,0 +1,55 @@
+<% include partials/header %>
+  <div class="container padding-resume">
+      <div class="row" id="padding-box">
+          <div>
+            <div class="jumbotron box-shadow">
+              <h1 id="title">Confirmação dos Dados <img src="img/alltleta_icon.png" id="iconh1" alt=""></h1>
+              <p>
+                <strong>Local:</strong> <%=data.local%>
+                </br>
+                <strong>Data:</strong> <%=data.date%>
+                </br>
+                <strong>Horário:</strong> <%=data.time%>
+                </br>
+                <strong>Nome:</strong> <%=data.name%>
+                </br>
+                <strong>Telefone:</strong> <%=data.phone%>
+                </br>
+                <strong>Email:</strong> <%=data.email%>
+                </br>
+                </br>
+                <strong>Número de Pessoas:</strong> <%=parseInt(data.quant) + 1%>
+                </br>
+                </br>
+                <span id="valor-font"><strong>Valor Total:</strong></span> R$ <%= 10*(parseInt(data.quant) + 1)%>,00
+              </p>
+              <br>
+              <div  id ="centerButton">
+                  <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                  <form id="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                    <input type="hidden" name="code" value="DFBCD1DF0404335BB4506FB20DA7BA32" />
+                    <input name="itemAmount1" type="hidden" value="10.00">
+                    <input name="itemQuantity1" type="hidden" value="<%= data.quant %>">
+                    <input type="hidden" name="iot" value="button" />
+                    <button id="confButton" type="submit" name="submit" class="btn btn-primary btn-lg"> CONFIRMAR  </button>
+                  </form>
+                  <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                  <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+
+              </div>
+              <div class="text-center">
+                <a id="incorrect" href="javascript:history.back()">Dados incorretos?</a>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="">
+      <img src="https://stc.pagseguro.uol.com.br/public/img/banners/pagamento/todos_estatico_550_100.gif" alt="Logotipos de meios de pagamento do PagSeguro" title="Este site aceita pagamentos com Visa, Mastercard, Diners, American Express, Hipercard, Aura, Elo, PLENOCard, PersonalCard, BrasilCard, FORTBRASIL, Cabal, Mais!, Avista, Grandcard, Sorocred, Bradesco, Itaú, Banco do Brasil, Banrisul, Banco HSBC, saldo em conta PagSeguro e boleto.">
+    </div>
+  </div>
+
+
+<% include partials/footer %>

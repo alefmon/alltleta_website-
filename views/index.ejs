@@ -1,0 +1,185 @@
+<% include partials/header %>
+    <header>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-7">
+                    <div class="header-content">
+                        <div class="header-content-inner">
+                            <h1>Encontre um treino funcional perto de você!</h1>
+                            <br>
+                            <h2>Treine ao ar livre com profissionais qualificados por R$ 13,00 apenas.</h2>
+                            <form id="emailIndex" class="form-inline" action="/agendar" method="post">
+                              <div class="form-group row">
+                                  <input type="email" name="email" class="form-control input-lg" id="emailInput" placeholder="Insira seu email">
+                                  <a href="javascript:{}" onclick="document.getElementById('emailIndex').submit();" class="btn btn-outline btn-lg page-scroll" id="BookClass">Agende sua aula</a>
+                              </div>
+                            </form>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <h4>Você é PERSONAL TRAINER? Trabalhe conosco.</h4>
+                            <a href="/trabalhe-conosco" class="btn btn-outline btn-sm page-scroll">Sou personal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="device-container">
+                        <div class="device-mockup iphone6_plus portrait white">
+                            <div class="device">
+                                <div class="screen">
+                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                    <img src="img/home.png" class="img-responsive" alt="Aplicativo alltleta para treinamento funcional">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="aula">
+
+        <div class="container">
+            <h2 class="section-heading"> Marque agora mesmo o seu treino funcional! </h2>
+            <br>
+            <br>
+            <h4>Escolha o local do seu treino</h4>
+            <div class="column" style="overflow:scroll; max-height:700px;">
+              <div class="row">
+                <% locals.forEach(function(local){ %>
+                <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail">
+                    <a data-toggle="modal" data-target="#<%=local.id_name%>">
+                      <img  src="<%=local.image%>" alt="<%=local.name%>" >
+                      <div class="caption">
+                        <h3><%=local.name%></h3>
+                      </div>
+                    </a>
+                    <div class="buttons-card">
+                      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#<%=local.id_name%>">
+                        Ver Treinos
+                      </button>
+                      <button onclick="window.open('<%=local.location.mapLink%>')" class="btn btn-default btn-sm" role="button">
+                        Ver mapa
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="<%=local.id_name%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <form action="/agendar-aula" method="post" id="classForm" class="ui massive container segment">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h3 class="modal-title" id="myModalLabel"> <strong>Agende seu treino</strong> </h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="ui stackable two column grid">
+
+                                <div class="column">
+                                    <div class="ui link cards">
+                                      <div class="card">
+                                        <div class="image">
+                                          <img src="<%=local.image%>">
+                                        </div>
+                                        <div class="content">
+                                          <div class="header"style="font-size:20px;"><%=local.name%></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <input type="radio" name="local" value="<%=local.name%>" checked style="display:none">
+                                <div class="column">
+                                    <h4> <strong>Próximos Treinos</strong></h4>
+                                    <div class="ui two column grid">
+                                        <%local.dates.forEach(function(date){ %>
+                                              <div class="ui column timeInput">
+                                                  <label>
+                                                      <% var days = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado']; %>
+                                                      <input type="radio" name="time" id="<%=date.hour%>" value="<%= date.hour %>h" checked>
+                                                      <input type="radio" name="date" value="<%=date.day.getDay()%>/<%=date.day.getMonth()%>/<%=date.day.getFullYear()%>" checked style="display:none">
+                                                      <img class="localRadio" src="img/location.png" alt="icon">
+                                                      <%=days[date.day.getDay()]%> (<%=date.day.getDate()%>/<%=date.day.getMonth()%>/<%=date.day.getFullYear()%>) - <%= date.hour %>:00h
+                                                  </label>
+                                              </div>
+                                        <%  }); %>
+                                    </div>
+                                    <!-- <h4>Quer levar mais alguém com você?</h4>
+                                    <div class="ui large form">
+                                      <div class="fields">
+                                        <div class="field">
+                                          Quero levar
+                                          <select class="ui fluid search dropdown" name="quant">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                          </select>
+                                          pessoas comigo.
+                                        </div>
+                                      </div>
+                                    </div> -->
+                                </div>
+                              </div>
+                              <br>
+                              <h4> Informações Pessoais</h4>
+                              <div class="ui equal width large form">
+                                <div class="fields">
+                                  <div class="required field">
+                                    <label for="exampleInputEmail2">Nome </label>
+                                    <input type="text" name="name" class="form-control" id="exampleInputEmail2" placeholder="Seu Nome" required>
+                                  </div>
+                                </div>
+                                <div class="fields">
+                                  <div class="required field">
+                                    <label for="exampleInputEmail2">Telefone de contato</label>
+                                    <input type="text" name="phone" class="form-control" id="exampleInputEmail2" placeholder="(99) 99999999 " required>
+                                  </div>
+                                  <div class="field">
+                                    <label for="exampleInputEmail2">Email</label>
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="email@example.com">
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-success" name="aulaSubmit" value="Submit" id="bookClassButton">Agendar aula</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <% }); %>
+              </div>
+            </div>
+            <div class="">
+              <h4>Quer treinar em outro local ou em outro horário ? <a href="/treinos" class="btn btn-success btn-sm page-scroll">CLIQUE AQUI</a></h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="bg-primary">
+        <div class="container">
+          <h2 class="section-heading"> Veja como nosso app funciona!</h2>
+          <br>
+          <br>
+        </div>
+        <div id="videoDiv" class="container">
+            <div id="videoPlayer" align="center" class="video-container">
+                <iframe width="560" height="315"  src="https://www.youtube.com/embed/QxeqVKbgn14" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<% include partials/footer %>
